@@ -5,8 +5,12 @@ let connection = """Data Source=.\SQLExpress;Initial Catalog=%s;Integrated Secur
 [
     _1_CreateClientsTable.m
     _2_CreateUsersTable.m
+    _3_CreateIssueTemplateTable.m
+    _4_CreateIssuesTable.m
 ]
 |> run connection "IssueTracker"
 
 clients.add connection "IssueTracker"
 users.add connection "IssueTracker"
+issuetemplates.add connection "IssueTracker"
+issues.add connection "IssueTracker"

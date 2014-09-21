@@ -71,6 +71,7 @@ let private logMigration id description connectionString =
     |> executeNonQuery connectionString
 
 let run connectionString database migrations =
+    let sw = System.Diagnostics.Stopwatch.StartNew()
     create connectionString database
 
     let connectionString = Printf.StringFormat<string->string>(connectionString)
@@ -94,3 +95,6 @@ let run connectionString database migrations =
                 failwith "ABORTING MIGRATION"
             printfn "\r\n=========================================="
         else printfn "Already Run: #%i -> %s" migration.id migration.description)
+
+    sw.Stop()
+    printfn "Migration finished in %f seconds" sw.Elapsed.TotalSeconds

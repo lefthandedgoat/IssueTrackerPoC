@@ -55,9 +55,13 @@
     <Compile Include="migration.fs" />
     <Compile Include="Scripts\1-CreateClientsTable.fs" />
     <Compile Include="Scripts\2-CreateUsersTable.fs" />
+    <Compile Include="Scripts\3-CreateIssueTemplateTable.fs" />
+    <Compile Include="Scripts\4-CreateIssuesTable.fs" />
     <Compile Include="TestData\common.fs" />
     <Compile Include="TestData\clients.fs" />
     <Compile Include="TestData\users.fs" />
+    <Compile Include="TestData\issuetemplates.fs" />
+    <Compile Include="TestData\issues.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />
