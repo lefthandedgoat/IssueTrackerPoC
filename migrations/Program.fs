@@ -7,3 +7,6 @@ let connection = """Data Source=.\SQLExpress;Initial Catalog=%s;Integrated Secur
     _2_CreateUsersTable.m
 ]
 |> run connection "IssueTracker"
+
+clients.add connection "IssueTracker"
+users.add connection "IssueTracker"

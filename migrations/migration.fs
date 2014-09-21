@@ -5,7 +5,7 @@ type migration = { id : int; description : string; up : string; down : string }
 
 let mutable drop = true
 
-let private executeNonQuery connectionString sql =    
+let executeNonQuery connectionString sql =    
     use connection = new System.Data.SqlClient.SqlConnection(connectionString)
     use command = new System.Data.SqlClient.SqlCommand()
     command.Connection <- connection

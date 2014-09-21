@@ -15,13 +15,13 @@ type AccountController() =
         this.View()
 
     [<HttpPost>]
-    member this.Login (username, password) = 
-        if true then
-            let a: string = password
+    member this.Login (username, password : string) = 
+        let user = auth.getUser username        
+        if user.IsSome && (auth.passwordCorrect password user.Value.Password user.Value.Salt) then
             FormsAuthentication.SetAuthCookie(username, false)
             this.RedirectToAction("Index", "Home") :> ActionResult
         else
-            this.View() :> ActionResult
+            this.View() :> ActionResult            
 
     [<HttpGet>]
     member this.Logout () = 
