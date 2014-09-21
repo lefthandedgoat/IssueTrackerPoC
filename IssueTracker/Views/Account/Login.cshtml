@@ -1,8 +1,39 @@
-﻿
-<form action="/Account/Login" method="post">
-    <div>Username: <input name="username" type="text" /></div>
-    <div>Password: <input name="password" type="password" /></div>
-    <div><input type="submit" value="Login" /></div>
-    <h1>@ViewBag.IsAuthed</h1>
-</form>
+﻿@{
+    Layout = null;
+}
 
+
+<!DOCTYPE html>
+<html background-image="url()">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/signin")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="login-wrapper">
+        <a href="index.html">
+        </a>
+        <div class="box">
+            <div class="content-wrap">
+                <h6>Log in</h6>
+                <form action="/Account/Login" method="post">
+                    <input class="form-control" name="username" type="text" placeholder="user name">
+                    <input class="form-control" name="password" type="password" placeholder="password">
+                    <a href="#" class="forgot">Forgot password?</a>
+                    <input class="btn-glow primary login" type="submit" value="Login" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

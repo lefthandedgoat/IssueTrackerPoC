@@ -18,11 +18,18 @@ type BundleConfig() =
 
         bundles.Add(ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
+                        "~/Scripts/theme.js",
                         "~/Scripts/respond.js"))
 
         bundles.Add(StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
-                        "~/Content/site.css"))
+                        "~/Content/bootstrap-overrides.css",
+                        "~/Content/compiled/layout.css",
+                        "~/Content/compiled/elements.css",
+                        "~/Content/compiled/icons.css",
+                        "~/Content/lib/font-awesome.css"))
+
+        bundles.Add(StyleBundle("~/Content/signin").Include([| "~/Content/compiled/signin.css" |]))
 
 /// Route for ASP.NET MVC applications
 type Route = { 
