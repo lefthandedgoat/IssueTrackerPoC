@@ -23,8 +23,9 @@
             <div class="content-wrap">
                 <h6>Log in</h6>
                 <form action="/User/Login" method="post">
-                    <input class="form-control" name="username" type="text" placeholder="user name">
+                    <input class="form-control" name="username" type="text" placeholder="user name" value="@ViewBag.UserName">
                     <input class="form-control" name="password" type="password" placeholder="password">
+                    <p id="message">@ViewBag.Message</p>
                     <a href="#" class="forgot">Forgot password?</a>
                     <input class="btn-glow primary login" type="submit" value="Login" />
                 </form>

@@ -69,11 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common.fs" />
+	<Compile Include="UI\Pages\home_page.fs" />
+    <Compile Include="UI\Pages\users_page.fs" />
     <Compile Include="UI\users.fs" />
     <Compile Include="UI\uitests.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config" />    
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

@@ -9,19 +9,24 @@ type UserController() =
     inherit Controller()
     
     [<HttpGet>]
-    member this.Login () = 
-        let isAuthed = (System.Web.HttpContext.Current.User <> null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated
-        this.ViewData?IsAuthed <- isAuthed
+    member this.Login () =         
         this.View()
+            
+    member private this.invalid username =
+            this.ViewData?UserName <- username
+            this.ViewData?Message <- "Invalid username or password"
+            this.View() :> ActionResult
 
     [<HttpPost>]
     member this.Login (username, password : string) = 
-        let user = auth.getUser username        
-        if user.IsSome && (auth.passwordCorrect password user.Value.Password user.Value.Salt) then
+        let user = auth.getUser username  
+        if user.IsNone then
+            this.invalid username
+        else if auth.passwordCorrect password user.Value.Password user.Value.Salt then
             FormsAuthentication.SetAuthCookie(username, false)
             this.RedirectToAction("Index", "Home") :> ActionResult
         else
-            this.View() :> ActionResult            
+            this.invalid username
 
     [<HttpGet>]
     member this.Logout () = 
