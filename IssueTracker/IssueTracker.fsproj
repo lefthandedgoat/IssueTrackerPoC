@@ -75,7 +75,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>48213</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:48213/</IISUrl>
+          <IISUrl>http://localhost:48214/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -130,9 +130,9 @@
     <Compile Include="Helpers\auth.fs" />
     <Compile Include="Controllers\HomeController.fs" />
     <Compile Include="Controllers\ValuesController.fs" />
-    <Compile Include="Controllers\AccountController.fs" />
+    <Compile Include="Controllers\UserController.fs" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
