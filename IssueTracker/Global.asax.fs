@@ -1,8 +1,6 @@
 namespace IssueTracker
 
 open System
-open System.Net.Http
-open System.Web
 open System.Web.Http
 open System.Web.Mvc
 open System.Web.Routing
@@ -10,7 +8,11 @@ open System.Web.Optimization
 
 type BundleConfig() =
     static member RegisterBundles (bundles:BundleCollection) =
-        bundles.Add(ScriptBundle("~/bundles/jquery").Include([|"~/Scripts/jquery-{version}.js"|]))
+        bundles.Add(ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.tablesorter.min.js"
+                        //"~/Scripts/jquery.dataTables.js"
+                    ))
 
         // Use the development version of Modernizr to develop with and learn from. Then, when you're
         // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -22,12 +24,12 @@ type BundleConfig() =
                         "~/Scripts/respond.js"))
 
         bundles.Add(StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
-                        "~/Content/bootstrap-overrides.css",
+                        "~/Content/bootstrap.css",                        
                         "~/Content/compiled/layout.css",
                         "~/Content/compiled/elements.css",
                         "~/Content/compiled/icons.css",
-                        "~/Content/lib/font-awesome.css"))
+                        "~/Content/lib/font-awesome.css",
+                        "~/Content/bootstrap-overrides.css"))
 
         bundles.Add(StyleBundle("~/Content/signin").Include([| "~/Content/compiled/signin.css" |]))
 

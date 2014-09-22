@@ -341,4 +341,6 @@ table th span.line{
   }
 }
 
-
+.no-margin-left {
+    margin-left: 0px;
+}

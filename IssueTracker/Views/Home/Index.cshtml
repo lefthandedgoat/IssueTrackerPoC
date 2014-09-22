@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-8">
+            <div class="table-wrapper small-margin-bottom products-table section">
+                <div class="row">
+                    <table id="issues" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">
+                                    Description
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>Something
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>More
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>Create Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var issue in ViewBag.Issues)
+                                {
+                            <tr class="issue-row">
+                                <td>
+                                    @issue.Description
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    
+                                </td>
+
+                                <td>
+                                    @issue.CreateDate
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#issues").tablesorter();
+        });
+
+    </script>
+}

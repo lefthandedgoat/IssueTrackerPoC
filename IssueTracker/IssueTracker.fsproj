@@ -108,11 +108,9 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Content Include="Content\Site.css" />
-    <None Include="Content\bootstrap-theme.min.css" />
-    <None Include="Content\bootstrap-theme.css" />
     <None Include="Content\bootstrap.min.css" />
     <None Include="Content\bootstrap.css" />
+    <None Include="Content\bootstrap-overrides.css" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -122,14 +120,16 @@
     <Content Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <Compile Include="Helpers\helpers.fs" />
     <Compile Include="Helpers\auth.fs" />
+    <Compile Include="Helpers\issues.fs" />
     <Compile Include="Controllers\HomeController.fs" />
-    <Compile Include="Controllers\ValuesController.fs" />
     <Compile Include="Controllers\UserController.fs" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
