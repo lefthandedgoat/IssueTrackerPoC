@@ -1,5 +1,7 @@
 ﻿module migration
 
+open System
+
 //core 'library'
 type migration = { id : int; description : string; up : string; down : string }
 
@@ -98,3 +100,28 @@ let run connectionString database migrations =
 
     sw.Stop()
     printfn "Migration finished in %f seconds" sw.Elapsed.TotalSeconds
+
+
+//Helpers for test data
+let batch size statements =
+    let rec batch (statements : string []) results =
+        let newSize = statements.Length - size
+        let size = if newSize < 0 then statements.Length else size            
+
+        let statement =
+            statements 
+            |> Seq.take size
+            |> Array.ofSeq
+            |> String.Concat                
+        let results = [statement] @ results
+            
+        if newSize >= size then
+            let leftovers = statements |> Seq.skip size |> Array.ofSeq
+            batch leftovers results
+        else if newSize <= 0 then
+            results
+        else
+            let leftovers = statements |> Seq.skip newSize |> Array.ofSeq
+            batch leftovers results                
+            
+    batch statements []

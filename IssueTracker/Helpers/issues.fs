@@ -3,8 +3,7 @@
 open FSharp.Data
 
 [<Literal>]
-let private getIssuesByClientQuery = """
-SELECT * FROM dbo.Issues WHERE ClientId = @ClientId"""
+let private getIssuesByClientQuery = """SELECT TOP 100 * FROM dbo.Issues WHERE ClientId = @ClientId"""
 
 type GetIssuesByClientQuery = SqlCommandProvider<getIssuesByClientQuery, "name=IssueTracker">
 

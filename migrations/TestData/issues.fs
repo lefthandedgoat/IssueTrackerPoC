@@ -5,15 +5,31 @@ open common
 let issue issueTemplateId clientId desc userId = sprintf "
 INSERT INTO [dbo].[Issues] 
         ([IssueTemplateId], [ClientId], [Description], [CreatedByUserId])
-VALUES  (%i,                %i,         '%s',          %i)" issueTemplateId clientId desc userId
+VALUES  (%i,                %i,         '%s',          %i);" issueTemplateId clientId desc userId
 
 let add connection database =
+    let sw = System.Diagnostics.Stopwatch.StartNew()
     let connection = createConnectionString connection database
-    [
-        issue 1 1 "Example SOW" 1
-        issue 2 1 "Example PROD" 1
-        issue 3 1 "Example QA" 1
-        issue 4 1 "Example ONBOARD" 1
-        issue 5 1 "Example BOUNTY" 1
-    ]
+    
+    let sqls =
+        [| 1..5 |] //clients
+        |> Array.map (fun clientId ->
+            [| 1 .. 200 |]
+            |> Array.map (fun _ ->
+                [|
+                    issue 1 clientId (sprintf "Client %i Example SOW" clientId) clientId
+                    issue 2 clientId (sprintf "Client %i Example PROD" clientId) clientId
+                    issue 3 clientId (sprintf "Client %i Example QA" clientId) clientId
+                    issue 4 clientId (sprintf "Client %i Example ONBOARD" clientId) clientId
+                    issue 5 clientId (sprintf "Client %i Example BOUNTY" clientId) clientId
+                |]
+            )
+            |> Array.concat
+        )
+        |> Array.concat
+                
+    sqls
+    |> migration.batch 5000
     |> List.iter (fun sql -> migration.executeNonQuery connection sql)
+    sw.Stop()
+    printfn "issues added inin %f seconds" sw.Elapsed.TotalSeconds
