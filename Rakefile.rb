@@ -6,7 +6,8 @@ task :build do
   sh 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe IssueTracker.sln'  
 end
 
-task :migrate => [:build] do
+task :migrate  do
+  sh 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe migrations\migrations.fsproj'  
   sh 'migrations\bin\debug\migrations.exe'
 end
 
