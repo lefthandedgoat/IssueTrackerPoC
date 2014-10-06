@@ -15,5 +15,8 @@ if ui() then
     else uitests.many()
     run()
 
-System.Console.ReadKey() |> ignore
-quit()
+    System.Console.ReadKey() |> ignore
+    quit()
+
+if load() then
+    loadScript.run()

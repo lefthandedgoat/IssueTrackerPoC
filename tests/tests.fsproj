@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common.fs" />
+	<Compile Include="Load\loadScript.fs" />
 	<Compile Include="UI\Pages\home_page.fs" />
     <Compile Include="UI\Pages\users_page.fs" />
     <Compile Include="UI\users.fs" />

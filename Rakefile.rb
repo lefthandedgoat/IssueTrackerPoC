@@ -11,10 +11,14 @@ task :migrate  do
   sh 'migrations\bin\debug\migrations.exe'
 end
 
-task :one do
+task :one => [:build] do
   sh 'tests\bin\debug\tests.exe ui one'
 end
 
-task :many do
+task :load => [:build] do
+  sh 'tests\bin\debug\tests.exe load'
+end
+
+task :many => [:build] do
   sh 'tests\bin\debug\tests.exe ui many'
 end
