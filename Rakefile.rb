@@ -3,7 +3,7 @@
 task :default => [:build, :one]
 
 task :build do
-  sh 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe IssueTracker.sln'  
+  sh 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe IssueTracker.sln /p:VisualStudioVersion=12.0'  
 end
 
 task :migrate  do
