@@ -3,8 +3,20 @@ module loadScript
 open System.Net
 open System.Diagnostics
 open System
+open Microsoft.FSharp.Control.WebExtensions
 
-let fetch name (url:string) (webClient : System.Net.WebClient) =    
+let asyncFetch name (url:string) (webClient : System.Net.WebClient) =    
+    async {
+        //printfn "fetching %s" name
+        let uri = new System.Uri(url)        
+        let stopwatch = Stopwatch()
+        stopwatch.Start()
+        let! html = webClient.AsyncDownloadString(uri)
+        stopwatch.Stop()
+        return stopwatch.Elapsed.Milliseconds
+    }
+
+let fetch name (url:string) (webClient : System.Net.WebClient) =       
     //printfn "fetching %s" name
     let uri = new System.Uri(url)        
     let stopwatch = Stopwatch()
@@ -16,6 +28,7 @@ let fetch name (url:string) (webClient : System.Net.WebClient) =
 let random = Random()
 
 let done' () = printfn "done!"; 0
+let asyncHome webClient = asyncFetch "home" "http://localhost:48214/" webClient |> Async.RunSynchronously
 let home webClient = fetch "home" "http://localhost:48214/" webClient
 
 type work =   
@@ -39,7 +52,7 @@ type manage =
 
 type expectations = { minUsers : int; totalUsers : int; avgResponseTimeInMS : int }
 
-let expectations = { minUsers = 5; totalUsers = 500; avgResponseTimeInMS = 2000 }
+let expectations = { minUsers = 5; totalUsers = 200; avgResponseTimeInMS = 2000 }
 let avgLastXItems = 5
 let numberOfTimesToDoSameBoringThing = 10
 
