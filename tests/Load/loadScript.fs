@@ -4,6 +4,7 @@ open System.Net
 open System.Diagnostics
 open System
 open Microsoft.FSharp.Control.WebExtensions
+open CustomWebClient
 
 let asyncFetch name (url:string) (webClient : System.Net.WebClient) =    
     async {
@@ -27,7 +28,9 @@ let fetch name (url:string) (webClient : System.Net.WebClient) =
 
 let random = Random()
 
-let done' () = printfn "done!"; 0
+let done' () = 
+    //printfn "done!"
+    0
 let asyncHome webClient = asyncFetch "home" "http://localhost:48214/" webClient |> Async.RunSynchronously
 let home webClient = fetch "home" "http://localhost:48214/" webClient
 
@@ -52,12 +55,12 @@ type manage =
 
 type expectations = { minUsers : int; totalUsers : int; avgResponseTimeInMS : int }
 
-let expectations = { minUsers = 5; totalUsers = 200; avgResponseTimeInMS = 2000 }
-let avgLastXItems = 5
+let expectations = { minUsers = 5; totalUsers = 500; avgResponseTimeInMS = 300 }
+let avgLastXItems = 20
 let numberOfTimesToDoSameBoringThing = 10
 
 let login () =
-    let client = new WebClient()        
+    let client = new CustomWebClient()        
     //todo simply turned off auth for now
     client
 
@@ -66,8 +69,9 @@ let doWork (w : MailboxProcessor<work>) =
     use client = login()
     [1 .. numberOfTimesToDoSameBoringThing] 
     |> List.iter (fun _ -> 
-        w.Post(Goto(fun _ -> home client))
-        w.Post(Sleep(50,100)))
+        w.Post(Goto(fun _ -> home client))        
+        w.Post(Sleep(50,100))
+        )
     w.Post(Goto(done'))
     w.Post(work.Done)
 

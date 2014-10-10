@@ -69,14 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common.fs" />
-	<Compile Include="Load\loadScript.fs" />
-	<Compile Include="UI\Pages\home_page.fs" />
+    <Compile Include="Load\customWebClient.fs" />
+    <Compile Include="Load\loadScript.fs" />
+    <Compile Include="UI\Pages\home_page.fs" />
     <Compile Include="UI\Pages\users_page.fs" />
     <Compile Include="UI\users.fs" />
     <Compile Include="UI\uitests.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
-    <None Include="packages.config" />    
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -93,7 +94,7 @@
       </PropertyGroup>
       <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">
         <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>          
+      </PropertyGroup>
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
