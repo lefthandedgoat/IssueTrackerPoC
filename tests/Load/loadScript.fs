@@ -33,6 +33,7 @@ let done' () =
     0
 let asyncHome webClient = asyncFetch "home" "http://localhost:48214/" webClient |> Async.RunSynchronously
 let home webClient = fetch "home" "http://localhost:48214/" webClient
+let issue webClient = fetch "home" "http://localhost:48214/Issue/Index/1" webClient
 
 type work =   
     | Die   
@@ -55,7 +56,7 @@ type manage =
 
 type expectations = { minUsers : int; totalUsers : int; avgResponseTimeInMS : int }
 
-let expectations = { minUsers = 5; totalUsers = 100; avgResponseTimeInMS = 3000 }
+let expectations = { minUsers = 5; totalUsers = 150; avgResponseTimeInMS = 240 }
 let avgLastXItems = 20
 let numberOfTimesToDoSameBoringThing = 10
 
@@ -70,6 +71,8 @@ let doWork (w : MailboxProcessor<work>) =
     [1 .. numberOfTimesToDoSameBoringThing] 
     |> List.iter (fun _ -> 
         w.Post(Goto(fun _ -> home client))        
+        w.Post(Sleep(50,100))
+        w.Post(Goto(fun _ -> issue client))        
         w.Post(Sleep(50,100))
         )
     w.Post(Goto(done'))

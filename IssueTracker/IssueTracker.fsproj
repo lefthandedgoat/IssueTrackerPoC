@@ -56,7 +56,7 @@
   </PropertyGroup>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-    <Choose>
+  <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">
       <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">
         <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
@@ -68,7 +68,7 @@
       </PropertyGroup>
       <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">
         <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>          
+      </PropertyGroup>
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
@@ -136,6 +136,7 @@
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <Compile Include="Helpers\comments.fs" />
     <Compile Include="Helpers\users.fs" />
     <Compile Include="Helpers\helpers.fs" />
     <Compile Include="Helpers\auth.fs" />
@@ -143,8 +144,10 @@
     <Compile Include="Helpers\client.fs" />
     <Compile Include="Controllers\HomeController.fs" />
     <Compile Include="Controllers\UserController.fs" />
+    <Compile Include="Controllers\IssueController.fs" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+	<Content Include="Views\Issue\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -158,7 +161,7 @@
     <Content Include="readme.txt" />
     <Content Include="LICENSE.txt" />
     <None Include="SqlServerTypes\readme.htm" />
-    <None Include="SqlServerTypes\Loader.cs" />
+    <None Include="SqlServerTypes\Loader.cs" />    
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">

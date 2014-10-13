@@ -2,6 +2,8 @@
 
 open common
 
+let number = 200
+
 let issue issueTemplateId clientId desc userId = sprintf "
 INSERT INTO [dbo].[Issues] 
         ([IssueTemplateId], [ClientId], [Description], [CreatedByUserId])
@@ -12,9 +14,9 @@ let add connection database =
     let connection = createConnectionString connection database
     
     let sqls =
-        [| 1..5 |] //clients
+        [| 1 .. clients.number |]
         |> Array.map (fun clientId ->
-            [| 1 .. 200 |]
+            [| 1 .. number |]
             |> Array.map (fun _ ->
                 [|
                     issue 1 clientId (sprintf "Client %i Example SOW" clientId) clientId

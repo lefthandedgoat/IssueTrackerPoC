@@ -12,3 +12,17 @@ let getIssuesByClientId clientId =
     cmd.AsyncExecute(ClientId = clientId) 
     |> Async.RunSynchronously
     |> List.ofSeq    
+
+[<Literal>]
+let private getIssueByIdQuery = """
+SELECT * FROM dbo.Issues 
+WHERE ClientId = @ClientId
+AND Id = @Id"""
+
+type GetIssueByIdQuery = SqlCommandProvider<getIssueByIdQuery, "name=IssueTracker">
+
+let getIssueById id clientId =
+    let cmd = new GetIssueByIdQuery()    
+    cmd.AsyncExecute(Id = id, ClientId = clientId) 
+    |> Async.RunSynchronously
+    |> Seq.head

@@ -1,6 +1,5 @@
 ﻿module _4_CreateIssuesTable
 
-
 open migration
 
 let m = {

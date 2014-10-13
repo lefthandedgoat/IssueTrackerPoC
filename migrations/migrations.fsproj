@@ -57,11 +57,13 @@
     <Compile Include="Scripts\2-CreateUsersTable.fs" />
     <Compile Include="Scripts\3-CreateIssueTemplateTable.fs" />
     <Compile Include="Scripts\4-CreateIssuesTable.fs" />
+    <Compile Include="Scripts\5-CreateCommentsTable.fs" />
     <Compile Include="TestData\common.fs" />
     <Compile Include="TestData\clients.fs" />
     <Compile Include="TestData\users.fs" />
     <Compile Include="TestData\issuetemplates.fs" />
     <Compile Include="TestData\issues.fs" />
+    <Compile Include="TestData\comments.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -81,7 +83,7 @@
       </PropertyGroup>
       <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">
         <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>          
+      </PropertyGroup>
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />

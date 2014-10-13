@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <form role="form">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input class="form-control" id="description" value="@ViewBag.Issue.Description">
+                </div>
+                <div class="form-group">
+                    <label for="createDate">Created on</label>
+                    <input disabled="disabled" class="form-control" id="createDate" value="@ViewBag.Issue.CreateDate">
+                </div>
+                @foreach (var comment in ViewBag.Comments)
+                {
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <textarea class="form-control" rows="2">@comment.Value</textarea>
+                    </div>
+                }
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+        });
+    </script>
+}
