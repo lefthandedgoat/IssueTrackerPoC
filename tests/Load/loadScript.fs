@@ -43,7 +43,7 @@ type work =
 type report =
     | Die
     | Stats of int
-    | Instructions of AsyncReplyChannel<int>    
+    | Instructions of AsyncReplyChannel<int>
 
 type worker = { id : int; worker : MailboxProcessor<work> }
 
@@ -55,7 +55,7 @@ type manage =
 
 type expectations = { minUsers : int; totalUsers : int; avgResponseTimeInMS : int }
 
-let expectations = { minUsers = 5; totalUsers = 500; avgResponseTimeInMS = 300 }
+let expectations = { minUsers = 5; totalUsers = 100; avgResponseTimeInMS = 3000 }
 let avgLastXItems = 20
 let numberOfTimesToDoSameBoringThing = 10
 
@@ -87,25 +87,28 @@ let accountant (expectations : expectations) =
                         let avg = 
                             if  count >= avgLastXItems then results |> Seq.take avgLastXItems |> Seq.average
                             else results |> List.average
+
+                        if currentUsers % 10 = 0 || currentUsers < 10 then
+                            printfn "Avg: %f ms, Users: %i" avg currentUsers
+
                         if currentUsers < expectations.minUsers then
                             reply.Reply(2)
-                            printfn "Adding %i! cause minuser too low" 1
+                            //printfn "Adding %i! cause minuser too low" 1
                             return! loop results (currentUsers + 1)
                         else if currentUsers >= expectations.totalUsers then
                             reply.Reply(0)
-                            printfn "Not adding cause current = %i!" currentUsers
+                            //printfn "Not adding cause current = %i!" currentUsers
                             return! loop results (currentUsers - 1)                            
                         else if avg > (float expectations.avgResponseTimeInMS) then
                             reply.Reply(0)
-                            printfn "Not adding cause avg = %f and current = %i" avg currentUsers
+                            //printfn "Not adding cause avg = %f and current = %i" avg currentUsers
                             return! loop results (currentUsers - 1)                            
                         else                            
                             reply.Reply(2)
-                            printfn "Adding 1 cause the system can take more load!!!!!"
+                            //printfn "Adding 1 cause the system can take more load!!!!!"
                             return! loop results (currentUsers + 1)
-                    | Stats(ms) -> 
-                        
-                        printfn "done in: %i" ms
+                    | Stats(ms) ->                         
+                        //printfn "done in: %i" ms
                         return! loop ([float ms] @ results) currentUsers }   
         loop [] 0)
         
@@ -137,7 +140,7 @@ let manager (accountant : MailboxProcessor<report>) =
                             |> Seq.skip numberOfNeededWorkers
                             |> List.ofSeq
                         //printfn "working: %i" workers.Length
-                        printfn "busy: %i" busyWorkers.Length
+                        //printfn "busy: %i" busyWorkers.Length
 
                         return! loop workers busyWorkers }
         loop [] [])
