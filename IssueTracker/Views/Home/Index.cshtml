@@ -26,7 +26,7 @@
                         <tbody>
                             @foreach (var issue in ViewBag.Issues)
                                 {
-                            <tr class="issue-row">
+                            <tr class="issue-row" data-issue-id="@issue.Id">
                                 <td>
                                     @issue.Description
                                 </td>
@@ -56,6 +56,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#issues").tablesorter();
+
+            $(".issue-row").click(function () {
+                var issueId = $(this).data("issue-id");
+                window.location.href = "/Issue/Index/" + issueId;
+            });
         });
 
     </script>
