@@ -9,3 +9,7 @@ let server = "localhost"
 let port = ":48214"
 let prefix = "http://"
 let root = prefix + server + port
+
+type Users =
+    | Admin
+    | Admin2

@@ -1,7 +1,8 @@
 module uitests 
 
 let one () =
-    users.all()    
+    home.all()    
 
 let many () =
     users.all()
+    home.all()

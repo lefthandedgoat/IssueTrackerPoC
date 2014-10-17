@@ -74,6 +74,7 @@
     <Compile Include="UI\Pages\home_page.fs" />
     <Compile Include="UI\Pages\users_page.fs" />
     <Compile Include="UI\users.fs" />
+    <Compile Include="UI\home.fs" />
     <Compile Include="UI\uitests.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />

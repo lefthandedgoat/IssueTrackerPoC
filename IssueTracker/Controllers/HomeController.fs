@@ -5,12 +5,12 @@ open System.Web
 open helpers
 open issues
 
-//[<Authorize>]
+[<Authorize>]
 type HomeController() =
     inherit Controller()
     member this.Index () =         
         //this assume usernames are unique across the system
-//        let name = HttpContext.Current.User.Identity.Name
-//        let user = user.getUserByName name
-        this.ViewData?Issues <- getIssuesByClientId 1 //user.ClientId
+        let name = HttpContext.Current.User.Identity.Name
+        let user = user.getUserByName name
+        this.ViewData?Issues <- getIssuesByClientId user.ClientId
         this.View()

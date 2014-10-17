@@ -7,6 +7,8 @@ open users_page
 
 //tests
 let all () =
+    context "users tests"
+
     "when you try to go home and you are not logged in you are redirected to login page" &&& fun _ ->
         url root
         on redirect
@@ -36,4 +38,8 @@ let all () =
         password << "test1234"
         click "Login"
 
-        on home_page.index        
+        on home_page.index  
+
+    "once logged in you can log out" &&& fun _ ->
+        click "Logout"
+        on login
