@@ -33,6 +33,7 @@ let done' () =
     0
 let asyncHome webClient = asyncFetch "home" "http://localhost:48214/" webClient |> Async.RunSynchronously
 let home webClient = fetch "home" "http://localhost:48214/" webClient
+//400001
 let issue webClient = fetch "home" "http://localhost:48214/Issue/Index/1" webClient
 
 type work =   
@@ -61,8 +62,8 @@ let avgLastXItems = 20
 let numberOfTimesToDoSameBoringThing = 10
 
 let login () =
-    let client = new CustomWebClient()        
-    //todo simply turned off auth for now
+    let client = new CustomWebClient()            
+    client.AddCookie ".ASPXAUTH" "D2BB80189FBE4F7BA5161720FBB06D1EAD4C7A3276B18EE3F7E2FF26B53A0CCAC2094073348F85C9D9F98E39F1C8DCD7B57DFF9EF272224DF9515A2A0574B1D0F6E6678635AA033F260B16C200662334C62D803DD046A16902DC42135138FB93" "http://localhost:48214"
     client
 
 let doWork (w : MailboxProcessor<work>) =

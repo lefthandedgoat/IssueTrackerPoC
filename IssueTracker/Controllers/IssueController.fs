@@ -7,7 +7,7 @@ open helpers
 open issues
 open comments
 
-[<AllowAnonymous>]
+[<Authorize>]
 type IssueController() =
     inherit Controller()
     

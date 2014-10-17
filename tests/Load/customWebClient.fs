@@ -7,7 +7,7 @@ type CustomWebClient() =
     inherit WebClient()
         member val CookieContainer : CookieContainer = new CookieContainer() with get, set
         
-        member x.AddCookie name value path =        
+        member x.AddCookie (name : string) (value : string) (path : string) =        
             let cookie = new Cookie(name, value)
             x.CookieContainer.Add(new Uri(path), cookie)
 
